@@ -1,3 +1,6 @@
+import Airtable from "airtable";
+import env from "./env";
+
 const greetings = [
   "Hi, ",
   "Howdy, ",
@@ -5,16 +8,46 @@ const greetings = [
   "hellooooooooooooooooooooooooooooooooooooooooooooooo.\n",
 ];
 
+const airtable = new Airtable({
+  apiKey: env.AIRTABLE_TOKEN,
+});
+
+const sleepbase = airtable.base("appIqOXkRlH2Oelt0");
+const shortlinkbase = airtable.base("appjZSOkcwDJJSr73");
+
+//TODO: cache stuff
 Bun.serve({
-  port: 3000,
+  port: env.PORT,
   async fetch(req, server) {
-    if (new URL(req.url).pathname == "/favicon.ico")
+    const reqURL = new URL(req.url);
+
+    if (reqURL.pathname == "/favicon.ico")
       return new Response(null, { status: 404 });
+    if (reqURL.pathname != "/") {
+      const url = (
+        await shortlinkbase(reqURL.hostname)
+          .select({
+            filterByFormula: `{path} = "${reqURL.pathname}"`,
+          })
+          .firstPage()
+      )[0];
+      if (url) {
+        return Response.redirect(
+          url.get("destination") as string,
+          url.get("code") as number
+        );
+      }
+    }
 
     const greeting = greetings[Math.floor(Math.random() * greetings.length)];
 
     const reposreq = await fetch(
-      "https://api.github.com/users/mrhappyma/repos?per_page=100"
+      "https://api.github.com/users/mrhappyma/repos?per_page=100",
+      {
+        headers: {
+          Authorization: `token ${env.GITHUB_TOKEN}`,
+        },
+      }
     );
     let repos = (await reposreq.json()) as Repo[];
     repos = repos.filter(
@@ -42,11 +75,36 @@ Bun.serve({
       )
       .join("\n");
 
+    const start = (
+      await sleepbase("sleep")
+        .select({
+          filterByFormula: `AND({event} = "sleep_tracking_started", {time} > ${
+            Date.now() - 1000 * 60 * 60 * 24
+          })`,
+          sort: [{ field: "time", direction: "desc" }],
+          maxRecords: 1,
+        })
+        .firstPage()
+    )[0].get("time") as number;
+    const end = (
+      await sleepbase("sleep")
+        .select({
+          filterByFormula: `AND({event} = "sleep_tracking_stopped", {time} > ${
+            Date.now() - 1000 * 60 * 60 * 24
+          })`,
+          sort: [{ field: "time", direction: "desc" }],
+          maxRecords: 1,
+        })
+        .firstPage()
+    )[0].get("time") as number;
+    const duration = (end - start) / 1000 / 60 / 60;
+
     return new Response(
       `${greeting}I'm Dominic. I'm a highschool student from Pennsylvania.
 
 I like working on cool code things and cool non-code things.
 I didn't like my website and didn't want to remake it, so now it's just plain text.
+${duration > 0 && `Last night I got about ${duration} hours of sleep.`}
 
 ${
   repos.length > 0 &&

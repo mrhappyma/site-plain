@@ -1,0 +1,137 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      airtable:
+        specifier: ^0.12.2
+        version: 0.12.2
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
+    devDependencies:
+      '@types/bun':
+        specifier: latest
+        version: 1.1.8
+
+packages:
+
+  '@types/bun@1.1.8':
+    resolution: {integrity: sha512-PIwVFQKPviksiibobyvcWtMvMFMTj91T8dQEh9l1P3Ypr3ZuVn9w7HSr+5mTNrPqD1xpdDLEErzZPU8gqHBu6g==}
+
+  '@types/node@14.18.63':
+    resolution: {integrity: sha512-fAtCfv4jJg+ExtXhvCkCqUKZ+4ok/JQk01qDKhL5BDDoS3AxKXhV5/MAVUZyQnSEd2GT92fkgZl0pz0Q0AzcIQ==}
+
+  '@types/node@20.12.14':
+    resolution: {integrity: sha512-scnD59RpYD91xngrQQLGkE+6UrHUPzeKZWhhjBSa3HSkwjbQc38+q3RoIVEwxQGRw3M+j5hpNAM+lgV3cVormg==}
+
+  '@types/ws@8.5.12':
+    resolution: {integrity: sha512-3tPRkv1EtkDpzlgyKyI8pGsGZAGPEaXeu0DOj5DI25Ja91bdAYddYHbADRYVrZMRbfW+1l5YwXVDKohDJNQxkQ==}
+
+  abort-controller@3.0.0:
+    resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
+    engines: {node: '>=6.5'}
+
+  abortcontroller-polyfill@1.7.5:
+    resolution: {integrity: sha512-JMJ5soJWP18htbbxJjG7bG6yuI6pRhgJ0scHHTfkUjf6wjP912xZWvM+A4sJK3gqd9E8fcPbDnOefbA9Th/FIQ==}
+
+  airtable@0.12.2:
+    resolution: {integrity: sha512-HS3VytUBTKj8A0vPl7DDr5p/w3IOGv6RXL0fv7eczOWAtj9Xe8ri4TAiZRXoOyo+Z/COADCj+oARFenbxhmkIg==}
+    engines: {node: '>=8.0.0'}
+
+  bun-types@1.1.26:
+    resolution: {integrity: sha512-n7jDe62LsB2+WE8Q8/mT3azkPaatKlj/2MyP6hi3mKvPz9oPpB6JW/Ll6JHtNLudasFFuvfgklYSE+rreGvBjw==}
+
+  event-target-shim@5.0.1:
+    resolution: {integrity: sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==}
+    engines: {node: '>=6'}
+
+  lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+
+  node-fetch@2.7.0:
+    resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
+    engines: {node: 4.x || >=6.0.0}
+    peerDependencies:
+      encoding: ^0.1.0
+    peerDependenciesMeta:
+      encoding:
+        optional: true
+
+  tr46@0.0.3:
+    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
+
+  undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+
+  webidl-conversions@3.0.1:
+    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
+
+  whatwg-url@5.0.0:
+    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
+
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+
+snapshots:
+
+  '@types/bun@1.1.8':
+    dependencies:
+      bun-types: 1.1.26
+
+  '@types/node@14.18.63': {}
+
+  '@types/node@20.12.14':
+    dependencies:
+      undici-types: 5.26.5
+
+  '@types/ws@8.5.12':
+    dependencies:
+      '@types/node': 20.12.14
+
+  abort-controller@3.0.0:
+    dependencies:
+      event-target-shim: 5.0.1
+
+  abortcontroller-polyfill@1.7.5: {}
+
+  airtable@0.12.2:
+    dependencies:
+      '@types/node': 14.18.63
+      abort-controller: 3.0.0
+      abortcontroller-polyfill: 1.7.5
+      lodash: 4.17.21
+      node-fetch: 2.7.0
+    transitivePeerDependencies:
+      - encoding
+
+  bun-types@1.1.26:
+    dependencies:
+      '@types/node': 20.12.14
+      '@types/ws': 8.5.12
+
+  event-target-shim@5.0.1: {}
+
+  lodash@4.17.21: {}
+
+  node-fetch@2.7.0:
+    dependencies:
+      whatwg-url: 5.0.0
+
+  tr46@0.0.3: {}
+
+  undici-types@5.26.5: {}
+
+  webidl-conversions@3.0.1: {}
+
+  whatwg-url@5.0.0:
+    dependencies:
+      tr46: 0.0.3
+      webidl-conversions: 3.0.1
+
+  zod@3.23.8: {}
