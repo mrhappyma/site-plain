@@ -75,42 +75,39 @@ Bun.serve({
       )
       .join("\n");
 
-    const start = (
-      await sleepbase("sleep")
-        .select({
-          filterByFormula: `AND({event} = "sleep_tracking_started", {time} > ${
-            Date.now() - 1000 * 60 * 60 * 24
-          })`,
-          sort: [{ field: "time", direction: "desc" }],
-          maxRecords: 1,
-        })
-        .firstPage()
-    )[0].get("time") as number;
-    const end = (
-      await sleepbase("sleep")
-        .select({
-          filterByFormula: `AND({event} = "sleep_tracking_stopped", {time} > ${
-            Date.now() - 1000 * 60 * 60 * 24
-          })`,
-          sort: [{ field: "time", direction: "desc" }],
-          maxRecords: 1,
-        })
-        .firstPage()
-    )[0].get("time") as number;
-    const duration = (end - start) / 1000 / 60 / 60;
+    // const start = (
+    //   await sleepbase("sleep")
+    //     .select({
+    //       filterByFormula: `AND({event} = "sleep_tracking_started", {time} > ${
+    //         Date.now() - 1000 * 60 * 60 * 24
+    //       })`,
+    //       sort: [{ field: "time", direction: "desc" }],
+    //       maxRecords: 1,
+    //     })
+    //     .firstPage()
+    // )[0].get("time") as number;
+    // const end = (
+    //   await sleepbase("sleep")
+    //     .select({
+    //       filterByFormula: `AND({event} = "sleep_tracking_stopped", {time} > ${
+    //         Date.now() - 1000 * 60 * 60 * 24
+    //       })`,
+    //       sort: [{ field: "time", direction: "desc" }],
+    //       maxRecords: 1,
+    //     })
+    //     .firstPage()
+    // )[0].get("time") as number;
+    // const duration = (end - start) / 1000 / 60 / 60;
+    const duration = 0;
 
     return new Response(
       `${greeting}I'm Dominic. I'm a highschool student from Pennsylvania.
 
 I like working on cool code things and cool non-code things.
 I didn't like my website and didn't want to remake it, so now it's just plain text.
-${duration > 0 && `Last night I got about ${duration} hours of sleep.`}
 
-${
-  repos.length > 0 &&
-  `Here's some stuff I've been working on recently:
-${projects}`
-}
+Here's some stuff I've been working on recently:
+${projects}
 
 My Github username is mrhappyma, and my email is my name at this domain.`
     );
